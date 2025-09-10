@@ -13,7 +13,11 @@ export class MemeComponent {
 
   constructor(private memeService: MemeService) {}
 
-  public memeUrl(): string {
-    return this.memeService.getRandomMemeUrl();
+  public memeUrl(): string | null {
+    let url = "";
+    this.memeService.getRandomMeme().subscribe(meme => {
+      url = meme.url;
+    });
+    return url;
   };
 }
