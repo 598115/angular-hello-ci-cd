@@ -4,12 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Meme {
-  description: string;
+  postLink: string;
+  title: string;
+  nsfwl: boolean;
+  spoiler: boolean;
+  author: string;
+  ups: number;
+  preview: string[];
   url: string;
-  type: string;
-  width: number;
-  height: number;
-  ratio: number;
 }
 
 @Injectable({
@@ -20,7 +22,7 @@ export class MemeService {
   private http = inject(HttpClient);
 
   getRandomMeme(): Observable<Meme> {
-    return this.http.get<Meme>('/.netlify/functions/get-meme');
+    return this.http.get<Meme>('https://meme-api.com/gimme')
   }
 }
 
