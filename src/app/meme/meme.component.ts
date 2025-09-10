@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MemeService } from '../meme.service';
 import { Observable } from 'rxjs';
+import { Meme } from '../meme.service';
 
 @Component({
   selector: 'app-meme',
@@ -9,15 +10,15 @@ import { Observable } from 'rxjs';
   templateUrl: './meme.component.html',
   styleUrl: './meme.component.css'
 })
-export class MemeComponent {
+export class MemeComponent implements OnInit{
 
   constructor(private memeService: MemeService) {}
 
-  public memeUrl(): string | null {
-    let url = "";
+  meme: Meme | null = null;
+
+ngOnInit(): void {
     this.memeService.getRandomMeme().subscribe(meme => {
-      url = meme.url;
+      this.meme = meme;
     });
-    return url;
-  };
+ }
 }
