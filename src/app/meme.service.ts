@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export interface Meme {
   postLink: string;
   title: string;
-  nsfwl: boolean;
+  nsfw: boolean;
   spoiler: boolean;
   author: string;
   ups: number;
